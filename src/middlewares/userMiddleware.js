@@ -7,7 +7,6 @@ const bodyValidate = (req, res, next) => {
 
   next();
 };
-
 module.exports = {
   bodyValidate,
 };
