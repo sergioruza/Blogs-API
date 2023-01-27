@@ -1,15 +1,16 @@
-const jwt = require('jsonwebtoken');
+const { loginService } = require('../services');
 
-const { JWT_SECRET } = process.env;
+const authLogin = async (req, res) => {
+  const { email, password } = req.body;
+ 
+  const { type, message } = await loginService.authLogin({ email, password });
 
-const authLogin = (req, res) => {
-  const payload = {
-    email: req.body.email,
-  };
+  if (type) {
+ return res.status(400)
+  .json({ message }); 
+}
 
-  const token = jwt.sign(payload, JWT_SECRET);
-
-  res.status(200).json({ token });
+  res.status(200).json({ token: message });
 };
 
 module.exports = {
