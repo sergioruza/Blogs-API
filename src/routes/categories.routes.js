@@ -8,4 +8,6 @@ const { categoriesController } = require('../controllers');
 
 router.post('/', authToken, createNameSchema, categoriesController.createCategory);
 
+router.get('/', authToken, categoriesController.getAllCategories);
+
 module.exports = router;
