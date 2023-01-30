@@ -1,4 +1,3 @@
-const sequelize = require('sequelize');
 const { BlogPost, PostCategory, User, Category } = require('../models');
 
 const createPost = async ({ title, content, categoryIds, email }) => {
@@ -14,7 +13,9 @@ const createPost = async ({ title, content, categoryIds, email }) => {
   }
 
   const user = await User.findOne({ where: { email } });
-  const addPost = await BlogPost.create({ title, content, userId: user.dataValues.id, published: Date.now(), updated: Date.now() });
+  const addPost = await BlogPost.create({
+    title, content, userId: user.dataValues.id, published: Date.now(), updated: Date.now(),
+  });
 
    await categoryIds.forEach((e) => {
      PostCategory.create({ postId: addPost.id, categoryId: e });
