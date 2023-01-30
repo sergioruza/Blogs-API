@@ -8,4 +8,6 @@ const authToken = require('../middlewares/authMiddleware');
 
 router.post('/', authToken, postBody, postController.createPost);
 
+router.get('/', authToken, postController.getAllPosts);
+
 module.exports = router;
