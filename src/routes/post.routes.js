@@ -10,4 +10,6 @@ router.post('/', authToken, postBody, postController.createPost);
 
 router.get('/', authToken, postController.getAllPosts);
 
+router.get('/:id', authToken, postController.getIdPost);
+
 module.exports = router;
