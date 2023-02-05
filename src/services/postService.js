@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { BlogPost, PostCategory, User, Category } = require('../models');
 
 const createPost = async ({ title, content, categoryIds, email }) => {
@@ -71,8 +72,36 @@ const getIdPost = async ({ id }) => {
   return { type: null, message: user };
 };
 
+const postUpdateId = async ({ title, content, id, idUser }) => {
+  const { dataValues } = await BlogPost.findOne({ where: { id } });
+  if (dataValues.userId == Number(idUser)) {
+    await BlogPost.update({ title, content }, { where: { id } });
+  const result = await BlogPost.findByPk(id, {
+    include: [{
+        model: User,
+        as: 'user',
+        association: 'user',
+        attributes: { exclude: ['password'] },
+        
+      },
+      {
+        model: Category,
+        as: 'categories',
+        association: 'categories',
+        through: { attributes: [] },
+        exclude: 'PostCategory',
+        
+      }],
+  });
+  return { type: null, message: result };
+  }
+
+  return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getIdPost,
+  postUpdateId,
 };

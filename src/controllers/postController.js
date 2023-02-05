@@ -28,8 +28,23 @@ const getIdPost = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const postUpdateId = async (req, res) => {
+  const { title, content } = req.body;
+  const { type, message } = await postService.postUpdateId({
+    title,
+    content,
+    id: req.params.id,
+    idUser: req.user.id,
+  });
+
+  if (type) return res.status(mapError(type)).json({ message });
+
+  return res.status(200).json(message);
+};
+
 module.exports = {
   createPost,
   getAllPosts,
   getIdPost,
+  postUpdateId,
 };

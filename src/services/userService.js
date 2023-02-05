@@ -12,8 +12,15 @@ const createUser = async ({ displayName, email, password, image }) => {
   
   if (user) return { type: 'EXISTING_USER', message: 'User already registered' };
 
-  await User.create({ displayName, email, password, image });
-  const payload = { email };
+  const { dataValues } = await User.create({ displayName, email, password, image }, {
+    attributes: { exclude: ['password'] },
+  });
+
+  const payload = {
+    id: dataValues.id,
+    displayName: dataValues.displayName,
+    email: dataValues.email,
+  };
   return { type: null, message: tokenGenerate(payload) };
 };
 
