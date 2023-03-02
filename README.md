@@ -31,8 +31,8 @@ $ npm install
 
 # Inicie o projeto
 $ npm run debug
-# [nodemon] starting `ts-node ./src/server.ts dev`
-#  Running on port 300?
+# [nodemon] starting `node .`
+# ouvindo porta 3000
 ```
 # Blogs-API
 
