@@ -59,6 +59,17 @@ O sistema é composto de uma API com rotas. Linguagem, frameworks e bibliotecas 
 Respeitando a proposta, o sistema deverá atender os seguintes requisitos:
 
 * **RF1** - Desenvolver endpoints que estarão conectados ao seu banco de dados seguindo os princípios do REST;
+* **RF2** - Rotas:  
+                   * post /login: Verifica dados para login;  
+                   * post /categories: Cadastra uma categoria;  
+                   * get /categories: Trás todas categorias cadastradas;  
+                   * post /post: Cadastra/cria um post;  
+                   * get /post: Trás todos posts cadastrados;  
+                   * get /post/id: Trás o post de acordo com seu id;  
+                   * put /post/id: Atualiza qualquer informação de um post pelo seu id;  
+                   * post /user: Cria um novo usuário;  
+                   * get /user: Trás todos usuários cadastrados;  
+                   * get /user/id: Trás um usuário de acordo com seu id;  
 
 ## Finais
 <details>
