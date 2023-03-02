@@ -29,7 +29,7 @@ $ docker exec -it blogs_api bash
 # Instale as dependências no bash
 $ npm install
 
-# Popule crie o db e o popule
+# Popule/crie o db e o popule
 $ npm run prestart
 
 # Inicie o projeto
